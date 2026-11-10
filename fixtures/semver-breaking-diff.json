@@ -1,0 +1,12 @@
+{
+  "module": "network/vnet",
+  "previousVersion": "2.4.1",
+  "candidateVersion": "2.4.2",
+  "removedParameters": [
+    "enableDdosProtection"
+  ],
+  "addedRequiredParameters": [
+    "ddosPlanId"
+  ],
+  "expectedGateDecision": "REJECT_MINOR_BUMP_BREAKING_SCHEMA_CHANGE"
+}

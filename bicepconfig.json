@@ -1,0 +1,22 @@
+{
+  "moduleAliases": {
+    "br": {
+      "PlatformRegistry": {
+        "registry": "acrplatform.azurecr.io",
+        "modulePath": "bicep/modules"
+      }
+    }
+  },
+  "analyzers": {
+    "core": {
+      "rules": {
+        "use-recent-api-versions": {
+          "level": "warning"
+        },
+        "no-hardcoded-location": {
+          "level": "error"
+        }
+      }
+    }
+  }
+}

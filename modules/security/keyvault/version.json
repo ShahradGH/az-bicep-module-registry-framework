@@ -1,0 +1,5 @@
+{
+  "module": "security/keyvault",
+  "version": "3.1.0",
+  "minimumTlsVersion": "1.3"
+}
