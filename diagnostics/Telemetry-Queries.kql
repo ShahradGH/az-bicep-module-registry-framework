@@ -1,0 +1,8 @@
+// Track Bicep OCI module pulls across workload pipelines and flag deprecated SemVer usage
+ContainerRegistryRepositoryEvents
+| where TimeGenerated > ago(14d)
+| where OperationName == "Pull" and Repository startswith "bicep/"
+| extend MajorVersion = toint(extract(@"^v?(\d+)\.\d+\.\d+$", 1, Tag))
+| summarize PullCount = count(), DistinctCallers = dcount(CallerIpAddress) by Repository, Tag, MajorVersion
+| extend LifecycleState = iff(MajorVersion < 2, "DEPRECATED_UPGRADE_REQUIRED", "SUPPORTED_IMMUTABLE")
+| order by LifecycleState asc, PullCount desc
