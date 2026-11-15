@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      .bg { fill: #0a1128; }
+      .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 34px; font-weight: 700; fill: #f8fafc; }
+      .subtitle { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; fill: #94a3b8; }
+      .actor { fill: #162447; stroke: #38bdf8; stroke-width: 2.5; rx: 10; }
+      .actor-ai { fill: #1f1b4d; stroke: #c084fc; stroke-width: 2.5; rx: 10; }
+      .actor-graph { fill: #0d2e26; stroke: #10b981; stroke-width: 2.5; rx: 10; }
+      .lifeline { stroke: #334155; stroke-width: 2.5; stroke-dasharray: 8 6; }
+      .msg-box { fill: #1e293b; stroke: #475569; stroke-width: 1.5; rx: 8; }
+      .gate-box { fill: #2a183b; stroke: #c084fc; stroke-width: 2; rx: 8; }
+      .veto-box { fill: #3b0d1d; stroke: #fb7185; stroke-width: 2; rx: 8; }
+      .ok-box { fill: #0d2e26; stroke: #10b981; stroke-width: 2; rx: 8; }
+      .txt-hdr { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 700; fill: #f8fafc; text-anchor: middle; }
+      .txt-sub { font-family: 'Consolas', monospace; font-size: 13px; fill: #94a3b8; text-anchor: middle; }
+      .txt-step { font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; font-weight: 600; fill: #e2e8f0; }
+      .txt-code { font-family: 'Consolas', monospace; font-size: 13px; fill: #38bdf8; }
+      .txt-veto { font-family: 'Consolas', monospace; font-size: 13px; font-weight: 700; fill: #fb7185; }
+      .arrow-blue { stroke: #38bdf8; stroke-width: 3; fill: none; marker-end: url(#m-blue); }
+      .arrow-red { stroke: #fb7185; stroke-width: 3; fill: none; marker-end: url(#m-red); }
+      .arrow-purple { stroke: #c084fc; stroke-width: 3; fill: none; marker-end: url(#m-purple); }
+      .arrow-green { stroke: #10b981; stroke-width: 3; fill: none; marker-end: url(#m-green); }
+    </style>
+    <marker id="m-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#38bdf8"/></marker>
+    <marker id="m-red" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#fb7185"/></marker>
+    <marker id="m-purple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#c084fc"/></marker>
+    <marker id="m-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#10b981"/></marker>
+  </defs>
+
+  <rect class="bg" width="1920" height="1080"/>
+  <text x="60" y="65" class="title">SemVer 2.0.0 AST Gate &amp; Dual-Signature Release Sequence</text>
+  <text x="60" y="98" class="subtitle">Pinning Check -&gt; AST ParamBlock Diff -&gt; LLM Migration Notes -&gt; Graph v2.x Teams Card -&gt; Immutable ACR OCI Push</text>
+
+  <!-- 5 Lifelines -->
+  <rect class="actor" x="80" y="135" width="260" height="75"/>
+  <text x="210" y="168" class="txt-hdr">Module PR / CI</text>
+  <text x="210" y="192" class="txt-sub">Candidate v2.4.2 or v3.0.0</text>
+  <line class="lifeline" x1="210" y1="210" x2="210" y2="990"/>
+
+  <rect class="actor" x="440" y="135" width="260" height="75"/>
+  <text x="570" y="168" class="txt-hdr">SemVer Pinning Gate</text>
+  <text x="570" y="192" class="txt-sub">Test-BicepModuleSemVerPinning</text>
+  <line class="lifeline" x1="570" y1="210" x2="570" y2="990"/>
+
+  <rect class="actor-ai" x="820" y="135" width="280" height="75"/>
+  <text x="960" y="168" class="txt-hdr">AI AST Diff Engine</text>
+  <text x="960" y="192" class="txt-sub">Invoke-ModuleBreakingChangeReview</text>
+  <line class="lifeline" x1="960" y1="210" x2="960" y2="990"/>
+
+  <rect class="actor-graph" x="1220" y="135" width="260" height="75"/>
+  <text x="1350" y="168" class="txt-hdr">Graph v2.x Approval</text>
+  <text x="1350" y="192" class="txt-sub">Send-ModuleReleaseApproval.ps1</text>
+  <line class="lifeline" x1="1350" y1="210" x2="1350" y2="990"/>
+
+  <rect class="actor" x="1580" y="135" width="260" height="75"/>
+  <text x="1710" y="168" class="txt-hdr">Private ACR OCI</text>
+  <text x="1710" y="192" class="txt-sub">Publish-VerifiedBicepModule.ps1</text>
+  <line class="lifeline" x1="1710" y1="210" x2="1710" y2="990"/>
+
+  <!-- Step 1 -->
+  <path class="arrow-blue" d="M 210 270 L 560 270"/>
+  <rect class="msg-box" x="240" y="235" width="300" height="30"/>
+  <text x="255" y="255" class="txt-step">1. Scan OCI &amp; PSResource References</text>
+
+  <!-- Step 2 -->
+  <path class="arrow-purple" d="M 570 350 L 950 350"/>
+  <rect class="msg-box" x="605" y="315" width="310" height="30"/>
+  <text x="620" y="335" class="txt-step">2. Parse Baseline vs Candidate AST</text>
+
+  <!-- Step 3: AI AST Box -->
+  <rect class="gate-box" x="780" y="385" width="360" height="145"/>
+  <text x="800" y="415" class="txt-step">3. ParamBlockAst &amp; LLM Semantic Diff:</text>
+  <text x="800" y="440" class="txt-code">• Removed / Renamed / Type-Changed Params</text>
+  <text x="800" y="463" class="txt-code">• New Mandatory Param without Default</text>
+  <text x="800" y="486" class="txt-code">• Strip Prompt-Injection from Comments</text>
+  <text x="800" y="509" class="txt-code">• Generate Migration Notes (British English)</text>
+
+  <!-- Step 4: Minor Bump Veto -->
+  <path class="arrow-red" d="M 960 580 L 220 580"/>
+  <rect class="veto-box" x="340" y="542" width="470" height="32"/>
+  <text x="355" y="563" class="txt-veto">4a. If Breaking &amp; PATCH/MINOR -&gt; REJECT_BREAKING_CHANGE</text>
+
+  <!-- Step 5: Major Bump -> Graph -->
+  <path class="arrow-green" d="M 960 665 L 1340 665"/>
+  <rect class="msg-box" x="990" y="630" width="320" height="30"/>
+  <text x="1005" y="650" class="txt-step">4b. MAJOR Bump -&gt; Teams Dual-Signature Card</text>
+
+  <!-- Step 6: Dual Signature Hold -->
+  <rect class="gate-box" x="1200" y="700" width="300" height="90"/>
+  <text x="1220" y="730" class="txt-step">5. Dual-Signature Gate:</text>
+  <text x="1220" y="753" class="txt-code">• Platform Architect + Security</text>
+  <text x="1220" y="776" class="txt-code">• Log to SharePoint Audit List</text>
+
+  <!-- Step 7: ACR OCI Push -->
+  <path class="arrow-green" d="M 1350 845 L 1700 845"/>
+  <rect class="ok-box" x="1375" y="808" width="305" height="32"/>
+  <text x="1390" y="829" class="txt-step">6. PUT /v2/platform/{mod}/manifests/{X.Y.Z}</text>
+
+  <!-- Step 8: Immutable Digest -->
+  <rect class="ok-box" x="1555" y="880" width="310" height="80"/>
+  <text x="1710" y="912" class="txt-hdr">SHA-256 Digest Locked</text>
+  <text x="1710" y="938" class="txt-sub">oci://acr.../platform/vnet:3.0.0</text>
+</svg>

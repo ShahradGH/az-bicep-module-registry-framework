@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0.0",
+  "domain": "powershell-oci-semver-governance",
+  "abstentionThreshold": 0.75,
+  "foundryToolSchema": {
+    "type": "function",
+    "function": {
+      "name": "evaluate_module_ast_breaking_changes",
+      "description": "Compares PowerShell AST ParamBlockAst and return PSCustomObject keys between baseline and candidate module versions to enforce Semantic Versioning 2.0.0.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "moduleName": { "type": "string" },
+          "previousVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+          "candidateVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+          "breakingChanges": { "type": "array", "items": { "type": "string" } },
+          "requiresMajorBump": { "type": "boolean" }
+        },
+        "required": ["moduleName", "previousVersion", "candidateVersion", "breakingChanges", "requiresMajorBump"]
+      }
+    }
+  },
+  "evaluationCases": [
+    {
+      "caseId": "AST-001",
+      "description": "Removed parameter under PATCH bump must be rejected",
+      "previousVersion": "2.4.1",
+      "candidateVersion": "2.4.2",
+      "expectedVerdict": "REJECT_BREAKING_CHANGE_REQUIRES_MAJOR_BUMP",
+      "expectedBreakingTypes": ["REMOVED_PARAMETER"]
+    },
+    {
+      "caseId": "AST-002",
+      "description": "Newly added Mandatory parameter without default under MINOR bump must be rejected",
+      "previousVersion": "2.4.1",
+      "candidateVersion": "2.5.0",
+      "expectedVerdict": "REJECT_BREAKING_CHANGE_REQUIRES_MAJOR_BUMP",
+      "expectedBreakingTypes": ["ADDED_MANDATORY_PARAMETER"]
+    },
+    {
+      "caseId": "AST-003",
+      "description": "Parameter type narrowed (e.g. string to int) under MINOR bump must be rejected",
+      "previousVersion": "1.2.0",
+      "candidateVersion": "1.3.0",
+      "expectedVerdict": "REJECT_BREAKING_CHANGE_REQUIRES_MAJOR_BUMP",
+      "expectedBreakingTypes": ["PARAMETER_TYPE_CHANGED"]
+    },
+    {
+      "caseId": "AST-004",
+      "description": "Optional parameter added with default value under MINOR bump is permitted",
+      "previousVersion": "2.4.1",
+      "candidateVersion": "2.5.0",
+      "expectedVerdict": "PERMIT_NON_BREAKING_RELEASE",
+      "expectedBreakingTypes": []
+    },
+    {
+      "caseId": "AST-005",
+      "description": "Breaking parameter removal under MAJOR bump requires dual-signature Teams approval and generates migration notes",
+      "previousVersion": "2.4.1",
+      "candidateVersion": "3.0.0",
+      "expectedVerdict": "REQUIRE_DUAL_SIGNATURE_MAJOR_APPROVAL",
+      "expectedBreakingTypes": ["REMOVED_PARAMETER"]
+    }
+  ]
+}

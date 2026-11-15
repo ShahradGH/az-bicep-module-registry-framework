@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      .bg { fill: #0a1128; }
+      .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 34px; font-weight: 700; fill: #f8fafc; }
+      .subtitle { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; fill: #94a3b8; }
+      .enclave { fill: #0f1b3d; stroke: #38bdf8; stroke-width: 2.5; rx: 14; }
+      .enclave-ai { fill: #16163a; stroke: #c084fc; stroke-width: 2.5; rx: 14; }
+      .enclave-acr { fill: #0d262b; stroke: #14b8a6; stroke-width: 2.5; rx: 14; }
+      .node { fill: #162447; stroke: #0ea5e9; stroke-width: 2; rx: 10; }
+      .node-ai { fill: #1f1b4d; stroke: #c084fc; stroke-width: 2; rx: 10; }
+      .node-ok { fill: #0d2e26; stroke: #10b981; stroke-width: 2; rx: 10; }
+      .node-veto { fill: #3b0d1d; stroke: #fb7185; stroke-width: 2; rx: 10; }
+      .lbl-hdr { font-family: 'Segoe UI', Arial, sans-serif; font-size: 20px; font-weight: 700; fill: #38bdf8; }
+      .lbl-ai { font-family: 'Segoe UI', Arial, sans-serif; font-size: 20px; font-weight: 700; fill: #c084fc; }
+      .lbl-acr { font-family: 'Segoe UI', Arial, sans-serif; font-size: 20px; font-weight: 700; fill: #2dd4bf; }
+      .txt-main { font-family: 'Segoe UI', Arial, sans-serif; font-size: 17px; font-weight: 600; fill: #f1f5f9; }
+      .txt-sub { font-family: 'Consolas', monospace; font-size: 14px; fill: #94a3b8; }
+      .txt-proto { font-family: 'Consolas', monospace; font-size: 13px; font-weight: 700; fill: #38bdf8; }
+      .line-blue { stroke: #38bdf8; stroke-width: 3; fill: none; marker-end: url(#a-blue); }
+      .line-purple { stroke: #c084fc; stroke-width: 3; fill: none; marker-end: url(#a-purple); }
+      .line-green { stroke: #10b981; stroke-width: 3; fill: none; marker-end: url(#a-green); }
+      .line-red { stroke: #fb7185; stroke-width: 3; stroke-dasharray: 7 5; fill: none; marker-end: url(#a-red); }
+    </style>
+    <marker id="a-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#38bdf8"/></marker>
+    <marker id="a-purple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#c084fc"/></marker>
+    <marker id="a-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#10b981"/></marker>
+    <marker id="a-red" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#fb7185"/></marker>
+  </defs>
+
+  <rect class="bg" width="1920" height="1080"/>
+  <text x="60" y="65" class="title">PowerShell &amp; ACR OCI Module Registry Governance Topology</text>
+  <text x="60" y="98" class="subtitle">AI AST Breaking-Change Review • Strict SemVer 2.0.0 Pinning • Immutable ACR OCI Digests • Graph v2.x Dual-Signature Approval</text>
+
+  <!-- Left: Authoring & CI Pipeline -->
+  <rect class="enclave" x="60" y="140" width="480" height="620"/>
+  <text x="85" y="180" class="lbl-hdr">PLATFORM MODULE AUTHORING</text>
+  <text x="85" y="205" class="txt-sub">GitHub Actions / PowerShell 7.4+ Control Plane</text>
+
+  <rect class="node" x="90" y="235" width="420" height="110"/>
+  <text x="110" y="270" class="txt-main">PowerShell Platform Modules</text>
+  <text x="110" y="295" class="txt-sub">modules/network/vnet/Invoke-VnetBaseline.ps1</text>
+  <text x="110" y="318" class="txt-sub">modules/security/keyvault/Invoke-KeyVaultBaseline.ps1</text>
+
+  <rect class="node" x="90" y="375" width="420" height="110"/>
+  <text x="110" y="410" class="txt-main">SemVer &amp; PSResourceGet Pinning Gate</text>
+  <text x="110" y="435" class="txt-sub">Test-BicepModuleSemVerPinning.ps1</text>
+  <text x="110" y="458" class="txt-sub">Bans :latest, :main, :v1 | Requires X.Y.Z</text>
+
+  <rect class="node-veto" x="90" y="515" width="420" height="105"/>
+  <text x="110" y="550" class="txt-main">Fail-Closed Veto Conditions</text>
+  <text x="110" y="575" class="txt-sub">VETO_UNPINNED_MODULE_REFERENCE</text>
+  <text x="110" y="598" class="txt-sub">VETO_SEMVER_AST_VIOLATION</text>
+
+  <rect class="node-ok" x="90" y="645" width="420" height="90"/>
+  <text x="110" y="680" class="txt-main">Pester 6.x Deterministic Verification</text>
+  <text x="110" y="705" class="txt-sub">Invoke-Pester -Path ./tests/BicepSemVer.Tests.ps1</text>
+
+  <!-- Center: AI AST & Graph Governance -->
+  <rect class="enclave-ai" x="600" y="140" width="660" height="620"/>
+  <text x="630" y="180" class="lbl-ai">AI BREAKING-CHANGE AST &amp; GRAPH GOVERNANCE</text>
+  <text x="630" y="205" class="txt-sub">ParamBlockAst Semantic Diffing + Microsoft Graph v2.x Escalation</text>
+
+  <rect class="node-ai" x="630" y="235" width="600" height="175"/>
+  <text x="650" y="270" class="txt-main">ai/Invoke-ModuleBreakingChangeReview.ps1</text>
+  <text x="650" y="298" class="txt-sub">• Parses Baseline vs Candidate via PowerShell Language.Parser</text>
+  <text x="650" y="322" class="txt-sub">• Detects: REMOVED_PARAMETER, PARAMETER_TYPE_CHANGED,</text>
+  <text x="650" y="344" class="txt-sub">  ADDED_MANDATORY_PARAMETER, PARAMETER_BECAME_MANDATORY</text>
+  <text x="650" y="368" class="txt-sub">• Foundry LLM Semantic Diffing + Prompt-Injection Filter</text>
+  <text x="650" y="392" class="txt-sub">• Auto-generates caller migration notes</text>
+
+  <rect class="node" x="630" y="440" width="600" height="135"/>
+  <text x="650" y="475" class="txt-main">SemVer 2.0.0 Promotion Matrix</text>
+  <text x="650" y="503" class="txt-sub">• Breaking + PATCH/MINOR -&gt; REJECT_BREAKING_CHANGE_REQUIRES_MAJOR_BUMP</text>
+  <text x="650" y="528" class="txt-sub">• Non-Breaking + MINOR/PATCH -&gt; PERMIT_NON_BREAKING_RELEASE</text>
+  <text x="650" y="553" class="txt-sub">• Breaking + MAJOR -&gt; REQUIRE_DUAL_SIGNATURE_MAJOR_APPROVAL</text>
+
+  <rect class="node-ok" x="630" y="605" width="600" height="130"/>
+  <text x="650" y="640" class="txt-main">graph/Send-ModuleReleaseApproval.ps1</text>
+  <text x="650" y="668" class="txt-sub">• POST /v1.0/teams/{teamId}/channels/{channelId}/messages</text>
+  <text x="650" y="692" class="txt-sub">• Dual-Signature Adaptive Card (Platform Architect + Security)</text>
+  <text x="650" y="716" class="txt-sub">• Optional SharePoint Release Audit List Item</text>
+
+  <!-- Right: Private ACR OCI Registry & Consumers -->
+  <rect class="enclave-acr" x="1320" y="140" width="540" height="620"/>
+  <text x="1350" y="180" class="lbl-acr">PRIVATE ACR OCI REGISTRY &amp; SPOKES</text>
+  <text x="1350" y="205" class="txt-sub">acrsovereignmodules.azurecr.io • Private Endpoint Only</text>
+
+  <rect class="node-ok" x="1350" y="235" width="480" height="150"/>
+  <text x="1370" y="270" class="txt-main">Publish-VerifiedBicepModule.ps1 (OCI REST)</text>
+  <text x="1370" y="298" class="txt-sub">PUT /v2/platform/{module}/manifests/{X.Y.Z}</text>
+  <text x="1370" y="322" class="txt-sub">Content-Trust &amp; Immutable Tag Lock Enabled</text>
+  <text x="1370" y="346" class="txt-sub">SHA-256 Digest Verified &amp; Recorded</text>
+  <text x="1370" y="370" class="txt-sub">Zero Public Docker/PSGallery Upstream Fallback</text>
+
+  <rect class="node" x="1350" y="420" width="480" height="145"/>
+  <text x="1370" y="455" class="txt-main">Spoke Landing Zone Consumers</text>
+  <text x="1370" y="483" class="txt-sub">• Install-PSResource -Repository PlatformACR -Version 2.5.0</text>
+  <text x="1370" y="508" class="txt-sub">• oci://acrsovereignmodules.azurecr.io/platform/vnet:2.5.0</text>
+  <text x="1370" y="533" class="txt-sub">• Pulls verified via Private Link (RFC 1918)</text>
+
+  <rect class="node" x="1350" y="595" width="480" height="140"/>
+  <text x="1370" y="630" class="txt-main">Log Analytics Telemetry (KQL)</text>
+  <text x="1370" y="658" class="txt-sub">queries/Acr-ModulePull-Telemetry.kql</text>
+  <text x="1370" y="683" class="txt-sub">Tracks ContainerRegistryRepositoryEvents</text>
+  <text x="1370" y="708" class="txt-sub">Alerts on unapproved tag pulls or 401/403 spikes</text>
+
+  <!-- Footer -->
+  <rect class="node" x="60" y="800" width="1800" height="210"/>
+  <text x="90" y="840" class="lbl-hdr">SUPPLY-CHAIN &amp; SEMVER INVARIANTS</text>
+  <text x="90" y="878" class="txt-main">1. Zero Declarative IaC: 100% PowerShell 7.4+ modules, Invoke-AzRestMethod ACR OCI pushes, and Microsoft Graph v2.x approvals.</text>
+  <text x="90" y="913" class="txt-main">2. Deterministic AST Gate: Every PR is parsed with System.Management.Automation.Language.Parser before human review.</text>
+  <text x="90" y="948" class="txt-main">3. Dual-Signature Major Gate: Breaking MAJOR bumps remain in HOLD_AWAITING_DUAL_SIGNATURE_APPROVAL until 2 signatures land.</text>
+  <text x="90" y="983" class="txt-sub">Clean-Room Synthetic Fixtures • Contoso Platform Engineering • Pester 6.x Verified</text>
+
+  <!-- Connectors -->
+  <path class="line-blue" d="M 510 290 L 630 290"/>
+  <path class="line-purple" d="M 930 410 L 930 440"/>
+  <path class="line-green" d="M 930 575 L 930 605"/>
+  <path class="line-green" d="M 1230 670 L 1350 310"/>
+  <path class="line-blue" d="M 1590 385 L 1590 420"/>
+  <path class="line-red" d="M 630 520 L 510 565"/>
+</svg>
